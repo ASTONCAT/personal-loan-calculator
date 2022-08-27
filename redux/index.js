@@ -5,7 +5,6 @@ import thunkMiddleware from 'redux-thunk'
 
 import amountReducer from './setAmounts'
 import monthlyPaymentReducer from './calcMonthlyPayment'
-import loaderReducer from './spinnerLoader'
 
 const bindMiddleware = (middleware) => {
 	if (process.env.NODE_ENV !== 'production') {
@@ -18,8 +17,7 @@ const bindMiddleware = (middleware) => {
 
 const rootReducer = combineReducers({
 	amount: amountReducer,
-	monthlyPayment: monthlyPaymentReducer,
-	loader: loaderReducer
+	monthlyPayment: monthlyPaymentReducer
 })
 
 const reducer = (state, action) => {
