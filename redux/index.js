@@ -4,7 +4,7 @@ import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 
 import amountReducer from './setAmounts'
-import monthlyPaymentReducer from './monthlyPayment'
+import monthlyPaymentReducer from './calcMonthlyPayment'
 import loaderReducer from './spinnerLoader'
 
 const bindMiddleware = (middleware) => {
