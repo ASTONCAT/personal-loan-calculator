@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 
-import amountReducer from './requestedAmount'
+import amountReducer from './setAmounts'
 import monthlyPaymentReducer from './monthlyPayment'
 import loaderReducer from './spinnerLoader'
 
