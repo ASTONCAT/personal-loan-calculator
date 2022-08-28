@@ -4,11 +4,20 @@ export function showLoader() {
     }
   }
 
-  export function hideLoader() {
+export function hideLoader() {
     return {
         type: "HIDE_LOADER"
     }
-  }
+}
+
+export function oneSecIncrement() {
+    return dispatch => {
+        dispatch(showLoader())
+        setTimeout(() => {
+            dispatch(hideLoader())
+        }, 1000)
+    }
+}
 
 export function calc(amount) {
     return {
