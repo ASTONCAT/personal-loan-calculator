@@ -1,7 +1,7 @@
 import classes from './Calculator.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, setAmount } from '../redux/setAmounts'
-import { fakeCalc } from '../redux/calcPayments'
+import { doCalc } from '../redux/calcPayments'
 
 function Calculator() {
 	const amount = useSelector((state) => state.amount)
@@ -12,12 +12,8 @@ function Calculator() {
 		return dispatch(setAmount(event.target.value))
 	}
 
-	function zvetsit() {
-		return dispatch(increment())
-	}
-
 	function calculate() {
-        return dispatch(fakeCalc())
+        return dispatch(doCalc())
 	}
 
 	return (
@@ -36,10 +32,10 @@ function Calculator() {
 			/>
 
 			<div className={classes.amountSlider}>
-				<button type="button" onMouseDown={zvetsit} onMouseUp={calculate}>
+				<button type="button" onMouseDown={() => dispatch(increment())} onMouseUp={calculate}>
 					+
 				</button>
-				<button type="button" onMouseDown={() => dispatch(decrement())}>
+				<button type="button" onMouseDown={() => dispatch(decrement())} onMouseUp={calculate}>
 					-
 				</button>
 			</div>

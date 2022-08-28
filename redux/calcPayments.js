@@ -12,7 +12,7 @@ export function hideLoader() {
     }
 }
 
-export function fakeCalc() {
+export function doCalc() {
     return (dispatch, getState) => {
         dispatch(showLoader())
         const { amount } = getState()
