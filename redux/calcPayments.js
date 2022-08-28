@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export function showLoader() {
     return {
         type: "SHOW_LOADER"
