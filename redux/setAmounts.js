@@ -7,6 +7,14 @@ export function increment() {
     }
 }
 
+export function oneSecIncrement() {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(increment())
+        }, 1250)
+    }
+}
+
 export function decrement() {
     return {
         type: "DECREMENT",
