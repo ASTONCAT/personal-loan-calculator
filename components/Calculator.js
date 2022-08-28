@@ -1,7 +1,7 @@
 import classes from './Calculator.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, setAmount } from '../redux/setAmounts'
-import { fakeCalc } from '../redux/calcMonthlyPayment'
+import { fakeCalc } from '../redux/calcPayments'
 
 function Calculator() {
 	const amount = useSelector((state) => state.amount)

@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export function showLoader() {
     return {
         type: "SHOW_LOADER"
@@ -38,27 +40,27 @@ const initialValues = {
     totalPayment: 118560
 }
 
-function monthlyPaymentReducer(payment = initialValues, action) {
+function paymentsReducer(payments = initialValues, action) {
     switch (action.type) {
         case "SHOW_LOADER":
             return {
-                ...payment,
+                ...payments,
                 loader: true
             }
         case "HIDE_LOADER":
             return {
-                ...payment,
+                ...payments,
                 loader: false
             }
         case "CALC":
             const simpleCalc = (action.payload * 1.07) / 12
             return {
-                ...payment,
-                monthlyPayment: simpleCalc
+                ...payments,
+                monthlyPayments: simpleCalc
             }
         default:
-            return payment
+            return payments
     }
   }
 
-  export default monthlyPaymentReducer
+  export default paymentsReducer
