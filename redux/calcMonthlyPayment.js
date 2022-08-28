@@ -10,9 +10,11 @@ export function hideLoader() {
     }
 }
 
-export function oneSecIncrement() {
-    return dispatch => {
+export function fakeCalc() {
+    return (dispatch, getState) => {
         dispatch(showLoader())
+        const { amount } = getState()
+        dispatch(calc(amount.requested))
         setTimeout(() => {
             dispatch(hideLoader())
         }, 1000)
@@ -49,10 +51,10 @@ function monthlyPaymentReducer(payment = initialValues, action) {
                 loader: false
             }
         case "CALC":
-            const fakeCalc = (action.payload * 0.07) / 12
+            const simpleCalc = (action.payload * 1.07) / 12
             return {
                 ...payment,
-                monthlyPayment: fakeCalc
+                monthlyPayment: simpleCalc
             }
         default:
             return payment
