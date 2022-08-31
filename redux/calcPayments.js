@@ -1,32 +1,55 @@
 import axios from 'axios'
+import { rapidApi } from '../util/rapidapi'
 
-export function showLoader() {
+export function fetchMonthlyPaymentRequest() {
 	return {
-		type: 'SHOW_LOADER'
+		type: 'FETCH_MONTHLY_PAYMENT_REQUEST'
 	}
 }
 
-export function hideLoader() {
+export function fetchMonthlyPaymentSuccess(monthlyPayment) {
 	return {
-		type: 'HIDE_LOADER'
+		type: 'FETCH_MONTHLY_PAYMENT_SUCCESS',
+		payload: monthlyPayment
+	}
+}
+
+export function fetchMonthlyPaymentFailure(errorMessage) {
+	return {
+		type: 'FETCH_MONTHLY_PAYMENT_FAILURE',
+		payload: errorMessage
 	}
 }
 
 export function doCalc() {
 	return (dispatch, getState) => {
-		dispatch(showLoader())
-		const { amount } = getState()
-		dispatch(calc(amount.requested))
-		setTimeout(() => {
-			dispatch(hideLoader())
-		}, 1000)
-	}
-}
+		dispatch(fetchMonthlyPaymentRequest())
 
-export function calc(amount) {
-	return {
-		type: 'CALC',
-		payload: amount
+		const curState = getState()
+		const reqAmount = curState.amount.requested
+		const curRate = curState.payments.interestRate
+		const curTerms = 12
+
+		const options = {
+			method: 'GET',
+			url: rapidApi.url,
+			params: { loanAmount: reqAmount, interestRate: curRate, terms: curTerms },
+			headers: {
+				'X-RapidAPI-Key': rapidApi.key,
+				'X-RapidAPI-Host': rapidApi.host
+			}
+		}
+
+		axios
+			.request(options)
+			.then(function (response) {
+				console.log(response.data)
+				dispatch(fetchMonthlyPaymentSuccess(response.data))
+			})
+			.catch(function (error) {
+				console.error(error)
+				dispatch(fetchMonthlyPaymentFailure(error.message))
+			})
 	}
 }
 
@@ -37,26 +60,28 @@ const initialValues = {
 	insurance: false,
 	insuranceAmount: 120,
 	arrangingFee: 0,
-	totalPayment: 118560
+	totalPayment: 118560,
+	error: ''
 }
 
 function paymentsReducer(payments = initialValues, action) {
 	switch (action.type) {
-		case 'SHOW_LOADER':
+		case 'FETCH_MONTHLY_PAYMENT_REQUEST':
 			return {
 				...payments,
 				loader: true
 			}
-		case 'HIDE_LOADER':
+		case 'FETCH_MONTHLY_PAYMENT_SUCCESS':
 			return {
 				...payments,
-				loader: false
+				loader: false,
+				monthlyPayment: action.payload
 			}
-		case 'CALC':
-			const simpleCalc = (action.payload * 1.07) / 12
+		case 'FETCH_MONTHLY_PAYMENT_FAILURE':
 			return {
 				...payments,
-				monthlyPayments: simpleCalc
+				loader: false,
+				error: action.payload
 			}
 		default:
 			return payments
