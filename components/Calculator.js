@@ -12,8 +12,12 @@ function Calculator() {
 		return dispatch(setAmount(event.target.value))
 	}
 
+	function handleMove(event) {
+		return dispatch(setAmount(event.target.value))
+	}
+
 	function calculate() {
-        return dispatch(doCalc())
+		return dispatch(doCalc())
 	}
 
 	return (
@@ -30,12 +34,31 @@ function Calculator() {
 				value={amount.requested}
 				onChange={handleChange}
 			/>
+			<br />
+			<br />
+			<input
+				id="sliderka"
+				type="range"
+				min={amount.min}
+				max={amount.max}
+				value={amount.requested}
+				step="100"
+				onChange={handleMove}
+			/>
 
 			<div className={classes.amountSlider}>
-				<button type="button" onMouseDown={() => dispatch(increment())} onMouseUp={calculate}>
+				<button
+					type="button"
+					onMouseDown={() => dispatch(increment())}
+					onMouseUp={calculate}
+				>
 					+
 				</button>
-				<button type="button" onMouseDown={() => dispatch(decrement())} onMouseUp={calculate}>
+				<button
+					type="button"
+					onMouseDown={() => dispatch(decrement())}
+					onMouseUp={calculate}
+				>
 					-
 				</button>
 			</div>
