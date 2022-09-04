@@ -37,13 +37,20 @@ function Calculator() {
 			<br />
 			<br />
 			<input
-				id="sliderka"
+				id="req-amount-slider"
+				className={classes.rangeSlider}
 				type="range"
 				min={amount.min}
 				max={amount.max}
 				value={amount.requested}
 				step="100"
-				onChange={handleMove}
+				onInput={handleMove}
+				onChange={calculate}
+				style={{
+					backgroundSize: `${
+						((amount.requested - amount.min) * 100) / (amount.max - amount.min)
+					}% 100%`
+				}}
 			/>
 
 			<div className={classes.amountSlider}>
