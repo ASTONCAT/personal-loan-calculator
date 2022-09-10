@@ -23,11 +23,7 @@ function Calculator() {
 	return (
 		<form className={classes.calculator}>
 			<input
-				className={
-					amount.requested >= amount.min && amount.requested <= amount.max
-						? classes.rightAmount
-						: classes.wrongAmount
-				}
+				className={`${classes.hideArrows} ${amount.requested >= amount.min && amount.requested <= amount.max ? classes.rightAmount : classes.wrongAmount}`}
 				type="number"
 				pattern="[0-9]{4,6}"
 				id="amount"
