@@ -4,6 +4,7 @@ import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 
 import amountReducer from './setAmounts'
+import termReducer from './setTerms'
 import paymentsReducer from './calcPayments'
 
 const bindMiddleware = (middleware) => {
@@ -17,6 +18,7 @@ const bindMiddleware = (middleware) => {
 
 const rootReducer = combineReducers({
 	amount: amountReducer,
+	term: termReducer,
 	payments: paymentsReducer
 })
 

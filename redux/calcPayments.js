@@ -28,7 +28,7 @@ export function doCalc() {
 		const curState = getState()
 		const reqAmount = curState.amount.requested
 		const curRate = curState.payments.interestRate
-		const curTerms = 12
+		const curTerms = curState.term.requested
 
 		const options = {
 			method: 'GET',

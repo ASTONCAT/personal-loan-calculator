@@ -1,19 +1,29 @@
 import classes from './Calculator.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, setAmount } from '../redux/setAmounts'
+import { addMonth, deductMonth, setTerm } from '../redux/setTerms'
 import { doCalc } from '../redux/calcPayments'
 
 function Calculator() {
 	const amount = useSelector((state) => state.amount)
+	const term = useSelector((state) => state.term)
 
 	const dispatch = useDispatch()
 
-	function handleChange(event) {
+	function handleAmountChange(event) {
 		return dispatch(setAmount(event.target.value))
 	}
 
-	function handleMove(event) {
+	function handleAmountMove(event) {
 		return dispatch(setAmount(event.target.value))
+	}
+
+	function handleTermChange(event) {
+		return dispatch(setTerm(event.target.value))
+	}
+
+	function handleTermMove(event) {
+		return dispatch(setTerm(event.target.value))
 	}
 
 	function calculate() {
@@ -32,7 +42,7 @@ function Calculator() {
 				pattern="[0-9]{4,6}"
 				id="amount"
 				value={amount.requested}
-				onChange={handleChange}
+				onChange={handleAmountChange}
 			/>
 			<br />
 			<br />
@@ -44,7 +54,7 @@ function Calculator() {
 				max={amount.max}
 				value={amount.requested}
 				step="100"
-				onInput={handleMove}
+				onInput={handleAmountMove}
 				onChange={calculate}
 				style={{
 					backgroundSize: `${
@@ -53,7 +63,7 @@ function Calculator() {
 				}}
 			/>
 
-			<div className={classes.amountSlider}>
+			<div className={classes.slider}>
 				<button
 					type="button"
 					onMouseDown={() => dispatch(increment())}
@@ -69,6 +79,55 @@ function Calculator() {
 					-
 				</button>
 			</div>
+
+			<input
+				className={`${classes.hideArrows} ${
+					term.requested >= term.min && term.requested <= term.max
+						? classes.rightAmount
+						: classes.wrongAmount
+				}`}
+				type="number"
+				pattern="[0-9]{4,6}"
+				id="term"
+				value={term.requested}
+				onChange={handleTermChange}
+			/>
+			<br />
+			<br />
+			<input
+				id="req-term-slider"
+				className={classes.rangeSlider}
+				type="range"
+				min={term.min}
+				max={term.max}
+				value={term.requested}
+				step="1"
+				onInput={handleTermMove}
+				onChange={calculate}
+				style={{
+					backgroundSize: `${
+						((term.requested - term.min) * 100) / (term.max - term.min)
+					}% 100%`
+				}}
+			/>
+
+			<div className={classes.slider}>
+				<button
+					type="button"
+					onMouseDown={() => dispatch(addMonth())}
+					onMouseUp={calculate}
+				>
+					+
+				</button>
+				<button
+					type="button"
+					onMouseDown={() => dispatch(deductMonth())}
+					onMouseUp={calculate}
+				>
+					-
+				</button>
+			</div>
+
 		</form>
 	)
 }
