@@ -83,6 +83,26 @@ function paymentsReducer(payments = initialValues, action) {
 				loader: false,
 				error: action.payload
 			}
+		case 'SET_INTERESTS_RATE':
+			return {
+				...payments,
+				interestRate: action.payload
+			}
+		case 'SET_INSURANCE':
+			return {
+				...payments,
+				insurance: action.payload
+			}
+		case 'SET_INSURANCE_AMOUNT':
+			return {
+				...payments,
+				insuranceAmount: action.payload
+			}
+		case 'SET_ARRANGING_FEE':
+			return {
+				...payments,
+				arrangingFee: action.payload
+			}
 		default:
 			return payments
 	}

@@ -33,7 +33,7 @@ export default function LoanCalcSetup({ calcSetup }) {
 export async function getServerSideProps() {
 	const { db } = await connectToDatabase()
 
-	const calcSetup = await db.collection('set').find({}).limit(1).toArray()
+	const calcSetup = await db.collection('setting').find({}).limit(1).toArray()
 
 	return {
 		props: {

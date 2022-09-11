@@ -11,7 +11,7 @@ const handler = async (req, res) => {
 					const { db } = await connectToDatabase()
 
 					// Update Setup document with the given id
-					await db.collection('set').updateOne(
+					await db.collection('setting').updateOne(
 						{ _id: ObjectId(docId) },
 						{
 							$set: {

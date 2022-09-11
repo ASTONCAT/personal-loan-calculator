@@ -8,12 +8,7 @@ import Calculator from '../components/Calculator'
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	const { db } = await connectToDatabase()
-	const calcSetup = await db.collection('set').find({}).limit(1).toArray()
-
-	store.dispatch({
-		type: 'SET_AMOUNT',
-		payload: calcSetup[0].reqAmount
-	})
+	const calcSetup = await db.collection('setting').find({}).limit(1).toArray()
 
 	store.dispatch({
 		type: 'SET_MIN_AMOUNT',
@@ -23,6 +18,46 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	store.dispatch({
 		type: 'SET_MAX_AMOUNT',
 		payload: calcSetup[0].maxAmount
+	})
+
+	store.dispatch({
+		type: 'SET_AMOUNT',
+		payload: calcSetup[0].reqAmount
+	})
+
+	store.dispatch({
+		type: 'SET_MIN_TERM',
+		payload: calcSetup[0].minTerm
+	})
+
+	store.dispatch({
+		type: 'SET_MAX_TERM',
+		payload: calcSetup[0].maxTerm
+	})
+
+	store.dispatch({
+		type: 'SET_TERM',
+		payload: calcSetup[0].reqTerm
+	})
+
+	store.dispatch({
+		type: 'SET_INTERESTS_RATE',
+		payload: calcSetup[0].interestRate
+	})
+
+	store.dispatch({
+		type: 'SET_INSURANCE',
+		payload: calcSetup[0].insurance
+	})
+
+	store.dispatch({
+		type: 'SET_INSURANCE_AMOUNT',
+		payload: calcSetup[0].insuranceAmount
+	})
+
+	store.dispatch({
+		type: 'SET_ARRANGING_FEE',
+		payload: calcSetup[0].arrangingFee
 	})
 
 	return {
