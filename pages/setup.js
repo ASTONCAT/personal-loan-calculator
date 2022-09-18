@@ -21,9 +21,16 @@ export default function LoanCalcSetup({ calcSetup }) {
 	}
 	return (
 		<SetupForm
-			reqValue={calcSetup[0].reqAmount}
 			minValue={calcSetup[0].minAmount}
 			maxValue={calcSetup[0].maxAmount}
+			reqValue={calcSetup[0].reqAmount}
+			minTerm={calcSetup[0].minTerm}
+			maxTerm={calcSetup[0].maxTerm}
+			reqTerm={calcSetup[0].reqTerm}
+			interestRate={calcSetup[0].interestRate}
+			insurance={calcSetup[0].insurance}
+			insuranceAmount={calcSetup[0].insuranceAmount}
+			arrangingFee={calcSetup[0].arrangingFee}
 			onSubmitData={submitDataHandler}
 			message={message}
 		/>
