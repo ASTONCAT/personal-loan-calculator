@@ -1,13 +1,19 @@
-.main, .setup {
-  margin: 3rem auto;
-  width: 90%;
+.main,
+.setup {
+	margin: 3rem auto;
+	width: 90%;
 }
 .main {
-  max-width: 60rem;
+	max-width: 60rem;
 }
 .setup {
-  max-width: 26rem;
+	max-width: 26rem;
 }
 .topbar {
-  color: rgba(0,0,0,.4);
+	color: rgba(0, 0, 0, 0.4);
+}
+@media (min-width: 768px) {
+	.setup {
+		max-width: 42rem;
+	}
 }
