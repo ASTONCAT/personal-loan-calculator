@@ -143,6 +143,7 @@ function SetupForm(props) {
 				<div className={classes.box}>
 					<label htmlFor="insurance">Insurance</label>
 					<input
+						className={classes.customCheckBox}
 						id="insurance"
 						type="checkbox"
 						defaultChecked={props.insurance}

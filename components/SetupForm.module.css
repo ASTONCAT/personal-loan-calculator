@@ -19,7 +19,6 @@
 }
 .box {
 	margin: 2rem 1rem;
-	text-align: left;
 }
 .form label {
 	font-size: 0.875rem;
@@ -34,9 +33,30 @@
 	font-size: 1rem;
 	border: 0.0625rem solid #ababab;
 }
-.form .box input {
-	width: auto;
+.form input.customCheckBox {
+	appearance: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: .125rem;
+    border: .125rem solid #a64bf4;
+    border-radius: .375rem;
+    transform: translate(-5.5625rem, -.1875rem);
+    cursor: pointer;
 }
+.form input.customCheckBox::before {
+    content: "";
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+    transform: scale(0);
+    transition: 120ms trasform ease-in-out;
+    background: #a64bf4;
+    background: linear-gradient(to left, #b622ff, #6d7afe);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.form input.customCheckBox:checked::before {
+    transform: scale(1);
+} 
 .submit {
 	position: relative;
 	border-radius: 1.5rem;
