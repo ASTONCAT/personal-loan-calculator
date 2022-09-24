@@ -5,6 +5,9 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Card from '../components/ui/Card'
 import CalcForm from '../components/CalcForm'
+import SetAmount from '../components/SetAmount'
+import SetInsurance from '../components/SetInsurance'
+import SetTerm from '../components/SetTerm'
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	const { db } = await connectToDatabase()
@@ -86,7 +89,11 @@ export default function Home() {
 						Expres půjčku schválíme online do 5 minut
 					</h1>
 
-					<CalcForm />					
+					<CalcForm>
+						<SetAmount />
+						<SetTerm />
+						<SetInsurance />
+					</CalcForm>
 
 					<p className={styles.disclaimer}>
 						Výše uvedené splátky je pouze orientační a od výsledné schválené výše
