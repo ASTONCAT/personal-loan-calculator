@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux'
 import { wrapper } from '../redux'
 import { connectToDatabase } from '../util/mongodb'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Calculator from '../components/Calculator'
+import Card from '../components/ui/Card'
+import CalcForm from '../components/CalcForm'
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	const { db } = await connectToDatabase()
@@ -72,7 +72,7 @@ export default function Home() {
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>Redux Next App</title>
+				<title>Personal Loan Calculator - React, Redux, Next App</title>
 				<meta
 					name="description"
 					content="Next App using Redux, React and Redux Thunk"
@@ -81,16 +81,18 @@ export default function Home() {
 			</Head>
 
 			<main className={styles.main}>
-				<h1 className={styles.title}>
-					Expres půjčku schválíme online do 5 minut
-				</h1>
+				<Card>
+					<h1 className={styles.title}>
+						Expres půjčku schválíme online do 5 minut
+					</h1>
 
-				<Calculator />
+					<CalcForm />					
 
-				<p className={styles.disclaimer}>
-					Výše uvedené splátky je pouze orientační a od výsledné schválené výše
-					splátky se může lišit.
-				</p>
+					<p className={styles.disclaimer}>
+						Výše uvedené splátky je pouze orientační a od výsledné schválené výše
+						splátky se může lišit.
+					</p>
+				</Card>
 			</main>
 
 			<footer className={styles.footer}>
