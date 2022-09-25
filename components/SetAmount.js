@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setAmount } from '../redux/setAmounts'
 import { doCalc } from '../redux/calcPayments'
 import Slider from './ui/Slider'
+import NumberInput from './ui/NumberInput'
 
 export default function SetAmount() {
 	const amount = useSelector((state) => state.amount)
@@ -23,18 +24,12 @@ export default function SetAmount() {
 
 	return (
 		<>
-			<input
-				className={`${classes.hideArrows} ${
-					amount.requested >= amount.min && amount.requested <= amount.max
-						? classes.rightAmount
-						: classes.wrongAmount
-				}`}
-				type="number"
-				pattern="[0-9]{4,6}"
-				id="amount"
+			<NumberInput 
+				min={amount.min}
+				max={amount.max}
 				value={amount.requested}
 				step="100"
-				onChange={handleAmountChange}
+				handleChange={handleAmountChange}
 			/>
 			<br />
 			<br />

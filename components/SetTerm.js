@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setTerm } from '../redux/setTerms'
 import { doCalc } from '../redux/calcPayments'
 import Slider from './ui/Slider'
+import NumberInput from './ui/NumberInput'
 
 export default function SetTerm() {
     const term = useSelector((state) => state.term)
@@ -23,17 +24,12 @@ export default function SetTerm() {
 
 	return (
 		<>
-			<input
-				className={`${classes.hideArrows} ${
-					term.requested >= term.min && term.requested <= term.max
-						? classes.rightAmount
-						: classes.wrongAmount
-				}`}
-				type="number"
-				pattern="[0-9]{4,6}"
-				id="term"
+			<NumberInput 
+				min={term.min}
+				max={term.max}
 				value={term.requested}
-				onChange={handleTermChange}
+				step="1"
+				handleChange={handleTermChange}
 			/>
 			<br />
 			<br />
