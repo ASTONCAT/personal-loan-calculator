@@ -1,14 +1,15 @@
-import classes from './SetAmount.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAmount } from '../redux/setAmounts'
 import { doCalc } from '../redux/calcPayments'
 import Slider from './ui/Slider'
 import NumberInput from './ui/NumberInput'
+import SliderGrid from './ui/sliderGrid'
+import Heading from './ui/Heading'
 
 export default function SetAmount() {
 	const amount = useSelector((state) => state.amount)
-
 	const dispatch = useDispatch()
+	const units = { singular: 'Kč', plural: 'Kč', plurals: 'Kč' }
 
 	function handleAmountChange(event) {
 		return dispatch(setAmount(event.target.value))
@@ -23,16 +24,16 @@ export default function SetAmount() {
 	}
 
 	return (
-		<>
+		<SliderGrid>
+			<Heading>Kolik si chci půjčit</Heading>
 			<NumberInput 
 				min={amount.min}
 				max={amount.max}
 				value={amount.requested}
 				step="100"
 				handleChange={handleAmountChange}
+				units={units}
 			/>
-			<br />
-			<br />
             <Slider 
                 type="range"
 				min={amount.min}
@@ -41,9 +42,8 @@ export default function SetAmount() {
 				step="100"
 				handleMove={handleAmountMove}
 				handleCalc={calculate}
+				units={units}
             />
-			<br />
-			<br />
-		</>
+		</SliderGrid>
 	)
 }
