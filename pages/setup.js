@@ -1,7 +1,7 @@
 import { connectToDatabase } from '../util/mongodb'
+import Head from 'next/head'
 import SetupForm from '../components/SetupForm'
 import React from 'react'
-// our-domain.com/setup
 
 export default function LoanCalcSetup({ calcSetup }) {
 	const [message, setMessage] = React.useState({error: false, text: ''})
@@ -20,20 +20,30 @@ export default function LoanCalcSetup({ calcSetup }) {
 		setMessage({error: result.error, text: result.message})
 	}
 	return (
-		<SetupForm
-			minValue={calcSetup[0].minAmount}
-			maxValue={calcSetup[0].maxAmount}
-			reqValue={calcSetup[0].reqAmount}
-			minTerm={calcSetup[0].minTerm}
-			maxTerm={calcSetup[0].maxTerm}
-			reqTerm={calcSetup[0].reqTerm}
-			interestRate={calcSetup[0].interestRate}
-			insurance={calcSetup[0].insurance}
-			insuranceAmount={calcSetup[0].insuranceAmount}
-			arrangingFee={calcSetup[0].arrangingFee}
-			onSubmitData={submitDataHandler}
-			message={message}
-		/>
+		<>
+			<Head>
+				<title>Personal Loan Calculator - Limit Values Setting</title>
+				<meta
+					name="description"
+					content="Here you can change the loan calculator limit values"
+				/>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<SetupForm
+				minValue={calcSetup[0].minAmount}
+				maxValue={calcSetup[0].maxAmount}
+				reqValue={calcSetup[0].reqAmount}
+				minTerm={calcSetup[0].minTerm}
+				maxTerm={calcSetup[0].maxTerm}
+				reqTerm={calcSetup[0].reqTerm}
+				interestRate={calcSetup[0].interestRate}
+				insurance={calcSetup[0].insurance}
+				insuranceAmount={calcSetup[0].insuranceAmount}
+				arrangingFee={calcSetup[0].arrangingFee}
+				onSubmitData={submitDataHandler}
+				message={message}
+			/>
+		</>
 	)
 }
 
