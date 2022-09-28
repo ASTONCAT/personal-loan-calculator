@@ -10,7 +10,27 @@
 	max-width: 26rem;
 }
 .topbar {
-	color: rgba(0, 0, 0, 0.4);
+	color: rgba(0, 0, 0, 0.15);
+	text-align: end;
+	padding: .5rem 1rem;
+}
+.footer {
+	display: flex;
+	flex: 1;
+	padding: 2rem 0;
+	border-top: 1px solid #eaeaea;
+	justify-content: center;
+	align-items: center;
+}
+.footer a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+.logo {
+	height: 1rem;
+	margin-left: 0.5rem;
 }
 @media (min-width: 768px) {
 	.setup {
