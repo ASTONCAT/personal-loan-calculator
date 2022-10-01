@@ -1,6 +1,12 @@
 .h1 {
 	margin: 0;
 	line-height: 1.15;
-	font-size: 4rem;
+    font-size: calc(1.3125rem + (34 - 21)*(100vw - 17.5rem)/(416 - 280));
+    color: #4f46a5;
     text-align: center;
 }
+@media (min-width: 417px) {
+    .h1 {
+        font-size: 2rem;
+    }
+} 

@@ -1,7 +1,12 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 4rem;
-    grid-auto-rows: 2rem;
-    grid-gap: .25rem;
-    margin: 2rem 0;
+    grid-template-rows: 2rem 2.5rem 2rem 1rem;
+    grid-gap: .375rem;
+    margin: 2.5rem 0;
+}
+@media (min-width: 768px) {
+    .container {
+        grid-template-rows: 2rem 1rem 1rem;
+    }
 }

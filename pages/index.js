@@ -84,7 +84,7 @@ export default function Home() {
 			</Head>
 
 			<Card>
-				<Title>Expres půjčku schválíme online do 5 minut</Title>
+				<Title>Expres půjčku schválíme online do&nbsp;5&nbsp;minut</Title>
 
 				<CalcForm>
 					<SetAmount />

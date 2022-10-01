@@ -56,3 +56,21 @@
 	grid-column: 3 / 5;
 	justify-self: end;
 }
+.min, .max {
+	font-size: .875rem;
+	opacity: .5;
+}
+@media (min-width: 768px) {
+    .rangeSlider {
+        grid-column: 1 / 4;
+		grid-row: 2 / 3;
+    }
+	.min {
+		grid-column: 1 / 2;
+		grid-row: 3 / 4;
+	}
+	.max {
+		grid-column: 2 / 4;
+		grid-row: 3 / 4;
+	}
+}

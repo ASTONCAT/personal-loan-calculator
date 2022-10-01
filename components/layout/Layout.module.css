@@ -5,6 +5,7 @@
 }
 .main {
 	max-width: 60rem;
+	margin-top: .5rem;
 }
 .setup {
 	max-width: 26rem;
@@ -35,5 +36,23 @@
 @media (min-width: 768px) {
 	.setup {
 		max-width: 42rem;
+	}
+	.main {
+		margin-top: 1rem;
+	}
+}
+@media (min-width: 992px) {
+	.main {
+		margin-top: 1.5rem;
+	}
+}
+@media (min-width: 1200px) {
+	.main {
+		margin-top: 2rem;
+	}
+}
+@media (min-width: 1600px) {
+	.main {
+		margin-top: 3rem;
 	}
 }
