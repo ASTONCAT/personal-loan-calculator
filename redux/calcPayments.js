@@ -7,10 +7,11 @@ export function fetchMonthlyPaymentRequest() {
 	}
 }
 
-export function fetchMonthlyPaymentSuccess(monthlyPayment) {
+export function fetchMonthlyPaymentSuccess(monthlyPayment, curTerms) {
+	const fetchData = { monthlyPayment: monthlyPayment, curTerms: curTerms }
 	return {
 		type: 'FETCH_MONTHLY_PAYMENT_SUCCESS',
-		payload: monthlyPayment
+		payload: fetchData
 	}
 }
 
@@ -43,11 +44,11 @@ export function doCalc() {
 		axios
 			.request(options)
 			.then(function (response) {
-				console.log(response.data)
-				dispatch(fetchMonthlyPaymentSuccess(response.data))
+				dispatch(
+					fetchMonthlyPaymentSuccess(response.data.monthlyPayment, curTerms)
+				)
 			})
 			.catch(function (error) {
-				console.error(error)
 				dispatch(fetchMonthlyPaymentFailure(error.message))
 			})
 	}
@@ -72,10 +73,16 @@ function paymentsReducer(payments = initialValues, action) {
 				loader: true
 			}
 		case 'FETCH_MONTHLY_PAYMENT_SUCCESS':
+			const monthlyPayment = action.payload.monthlyPayment
+			const monthlyPaymentWithInsurance = payments.insurance
+				? monthlyPayment + payments.insuranceAmount
+				: monthlyPayment
+			const totalPayment = monthlyPaymentWithInsurance * action.payload.curTerms + payments.arrangingFee
 			return {
 				...payments,
 				loader: false,
-				monthlyPayment: action.payload
+				monthlyPayment: monthlyPaymentWithInsurance,
+				totalPayment: totalPayment
 			}
 		case 'FETCH_MONTHLY_PAYMENT_FAILURE':
 			return {
