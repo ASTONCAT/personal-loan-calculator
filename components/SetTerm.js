@@ -32,6 +32,7 @@ export default function SetTerm() {
 				value={term.requested}
 				step="1"
 				handleChange={handleTermChange}
+				handleInput={calculate}
 				units={units}
 			/>
 			<Slider

@@ -32,6 +32,7 @@ export default function SetAmount() {
 				value={amount.requested}
 				step="100"
 				handleChange={handleAmountChange}
+				handleInput={calculate}
 				units={units}
 			/>
             <Slider 

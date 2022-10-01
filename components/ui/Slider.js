@@ -10,8 +10,8 @@ export default function Slider(props) {
 				max={props.max}
 				value={props.value}
 				step={props.step}
-				onInput={props.handleMove}
-				onChange={props.handleCalc}
+				onInput={props.handleCalc}
+				onChange={props.handleMove}
 				style={{
 					backgroundSize: `${
 						((props.value - props.min) * 100) / (props.max - props.min)
