@@ -15,7 +15,6 @@ export default function NumberInput(props) {
 				value={props.value}
 				step={props.step}
 				onChange={props.handleChange}
-				onInput={props.handleInput}
 			/>
 			<div className={classes.units}>
 				{absValue > 4

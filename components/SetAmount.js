@@ -11,40 +11,36 @@ export default function SetAmount() {
 	const dispatch = useDispatch()
 	const units = { singular: 'Kč', plural: 'Kč', plurals: 'Kč' }
 
+	function calculate(curData) {
+		return dispatch(doCalc(curData))
+	}
+
 	function handleAmountChange(event) {
-		return dispatch(setAmount(event.target.value))
-	}
-
-	function handleAmountMove(event) {
-		return dispatch(setAmount(event.target.value))
-	}
-
-	function calculate() {
-		return dispatch(doCalc())
+		const curData = { reqAmount: event.target.value, curTerms: false }
+		calculate(curData)
+		return dispatch(setAmount(curData.reqAmount))
 	}
 
 	return (
 		<SliderGrid>
 			<Heading>Kolik si chci půjčit</Heading>
-			<NumberInput 
+			<NumberInput
 				min={amount.min}
 				max={amount.max}
 				value={amount.requested}
 				step="100"
 				handleChange={handleAmountChange}
-				handleInput={calculate}
 				units={units}
 			/>
-            <Slider 
-                type="range"
+			<Slider
+				type="range"
 				min={amount.min}
 				max={amount.max}
 				value={amount.requested}
 				step="100"
-				handleMove={handleAmountMove}
-				handleCalc={calculate}
+				handleChange={handleAmountChange}
 				units={units}
-            />
+			/>
 		</SliderGrid>
 	)
 }

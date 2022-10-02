@@ -22,14 +22,22 @@ export function fetchMonthlyPaymentFailure(errorMessage) {
 	}
 }
 
-export function doCalc() {
+export function updateInsurance(insurance, term) {
+	const updateData = { insurance: insurance, term: term }
+	return {
+		type: 'UPDATE_INSURANCE',
+		payload: updateData
+	}
+}
+
+export function doCalc(curData) {
 	return (dispatch, getState) => {
 		dispatch(fetchMonthlyPaymentRequest())
 
 		const curState = getState()
-		const reqAmount = curState.amount.requested
+		const reqAmount = curData.reqAmount ? curData.reqAmount : curState.amount.requested
 		const curRate = curState.payments.interestRate
-		const curTerms = curState.term.requested
+		const curTerms = curData.curTerms ? curData.curTerms : curState.term.requested
 
 		const options = {
 			method: 'GET',
@@ -99,6 +107,17 @@ function paymentsReducer(payments = initialValues, action) {
 			return {
 				...payments,
 				insurance: action.payload
+			}
+		case 'UPDATE_INSURANCE':
+			const updateMonthlyPaymentWithInsurance = action.payload.insurance
+				? payments.monthlyPayment + payments.insuranceAmount
+				: payments.monthlyPayment
+			const updateTotalPayment = updateMonthlyPaymentWithInsurance * action.payload.term + payments.arrangingFee
+			return {
+				...payments,
+				monthlyPayment: updateMonthlyPaymentWithInsurance,
+				insurance: action.payload.insurance,
+				totalPayment: updateTotalPayment
 			}
 		case 'SET_INSURANCE_AMOUNT':
 			return {

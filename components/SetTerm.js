@@ -11,16 +11,14 @@ export default function SetTerm() {
 	const dispatch = useDispatch()
 	const units = { singular: 'měsíc', plural: 'měsíce', plurals: 'měsíců' }
 
+	function calculate(curData) {
+		return dispatch(doCalc(curData))
+	}
+
 	function handleTermChange(event) {
-		return dispatch(setTerm(event.target.value))
-	}
-
-	function handleTermMove(event) {
-		return dispatch(setTerm(event.target.value))
-	}
-
-	function calculate() {
-		return dispatch(doCalc())
+		const curData = { reqAmount: false, curTerms: event.target.value }
+		calculate(curData)
+		return dispatch(setTerm(curData.curTerms))
 	}
 
 	return (
@@ -32,7 +30,6 @@ export default function SetTerm() {
 				value={term.requested}
 				step="1"
 				handleChange={handleTermChange}
-				handleInput={calculate}
 				units={units}
 			/>
 			<Slider
@@ -41,8 +38,7 @@ export default function SetTerm() {
 				max={term.max}
 				value={term.requested}
 				step="1"
-				handleMove={handleTermMove}
-				handleCalc={calculate}
+				handleChange={handleTermChange}
 				units={units}
 			/>
 		</SliderGrid>
