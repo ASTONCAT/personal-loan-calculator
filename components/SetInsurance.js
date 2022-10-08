@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { updateInsurance } from '../redux/calcPayments'
 import Heading from './ui/Heading'
+import RadioButton from './ui/RadioButton'
+import classes from './SetInsurance.module.css'
 
 export default function SetInsurance() {
 	const payments = useSelector((state) => state.payments)
@@ -8,7 +10,7 @@ export default function SetInsurance() {
 	const dispatch = useDispatch()
 
 	function handleInsuranceChange(event) {
-		const insurance = event.target.value === "with insurance" ? true : false
+		const insurance = event.target.value === 'with insurance' ? true : false
 		return dispatch(updateInsurance(insurance, term.requested))
 	}
 
@@ -16,26 +18,29 @@ export default function SetInsurance() {
 		<>
 			<Heading>Pojištění proti neschopnosti půjčku splácet</Heading>
 
-			<div className="insurance">
-				<label>
+			<div className={classes.insurance}>
+				<RadioButton>
 					<input
 						type="radio"
+						name='insurance'
+						id="with-insurance"
 						value="with insurance"
 						checked={payments.insurance}
 						onChange={handleInsuranceChange}
-					/>{' '}
-					S pojištěním
-				</label>
-
-				<label>
+					/>
+					<label htmlFor="with-insurance">S pojištěním</label>
+				</RadioButton>
+				<RadioButton>
 					<input
 						type="radio"
+						name='insurance'
+						id="without-insurance"
 						value="without insurance"
 						checked={!payments.insurance}
 						onChange={handleInsuranceChange}
-					/>{' '}
-					Bez pojištění
-				</label>
+					/>
+					<label htmlFor="without-insurance">Bez pojištění</label>
+				</RadioButton>
 			</div>
 		</>
 	)

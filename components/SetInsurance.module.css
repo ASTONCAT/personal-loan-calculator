@@ -1,0 +1,41 @@
+.insurance input {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+	width: 1.5rem;
+	height: 1.5rem;
+	border: 0.125rem solid rgba(79, 70, 165, 0.15);
+	border-radius: 50%;
+	cursor: pointer;
+}
+.insurance input::after {
+	content: '';
+	display: block;
+	border-radius: 50%;
+	width: 0.875rem;
+	height: 0.875rem;
+	margin: 0.1875rem;
+}
+.insurance input:focus {
+	outline: 0.125rem solid #27cdfd;
+	border: 0.125rem solid rgba(79, 70, 165, 0);
+}
+.insurance input:hover {
+	outline: 0.125rem solid #27cdfd;
+	border: 0.125rem solid rgba(79, 70, 165, 0);
+}
+.insurance input:hover::after {
+	background-color: rgba(79, 70, 165, 0.5);
+}
+.insurance input:checked::after {
+		background-color: rgba(79, 70, 165, 1);
+}
+.insurance label {
+	cursor: pointer;
+}
+@media (min-width: 417px) {
+	.insurance {
+		display: flex;
+		gap: 2rem;
+	}
+}

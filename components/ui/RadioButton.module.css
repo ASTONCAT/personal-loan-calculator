@@ -1,0 +1,11 @@
+.radio {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin: 24px 0;
+}
+@media (min-width: 417px) {
+	.radio {
+        margin: 16px 0;
+	}
+}
