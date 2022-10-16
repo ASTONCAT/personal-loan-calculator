@@ -9,6 +9,7 @@ import SetInsurance from '../components/SetInsurance'
 import SetTerm from '../components/SetTerm'
 import Disclaimer from '../components/ui/Disclaimer'
 import Recap from '../components/Recap'
+import MonthlyInstalment from '../components/MonthlyInstalment'
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	const { db } = await connectToDatabase()
@@ -94,6 +95,8 @@ export default function Home() {
 				</CalcForm>
 
 				<Recap />
+
+				<MonthlyInstalment />
 
 				<Disclaimer>
 					Výše uvedené splátky je pouze orientační a od výsledné schválené výše

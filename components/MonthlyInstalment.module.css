@@ -1,0 +1,47 @@
+.box {
+	background: #4f46a5;
+	background-image: linear-gradient(#27cdfd, #4f46a5);
+	padding: 3rem 0.5rem;
+	margin-bottom: 2.5rem;
+}
+.box h2 {
+	margin: 0;
+	font-weight: 500;
+	font-size: 1.25rem;
+	color: white;
+	margin-bottom: 0.5rem;
+}
+.box span {
+	display: block;
+	color: white;
+    font-size: calc(2rem + (48 - 32)*(100vw - 17.5rem)/(400 - 280));
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+.box button {
+    font-size: 0.875rem;
+    border: none;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    padding: 0.625rem 2.25rem;
+    background-color: #dc4ab6;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: .85;
+    transition: opacity .4s ease;
+}
+.box button:hover {
+    opacity: 1;
+}
+.box h6 {
+	margin: 0;
+}
+.box h6::before {
+	margin: 0;
+}
+@media (min-width: 400px) {
+    .box span {
+        font-size: 3rem;
+    }
+} 

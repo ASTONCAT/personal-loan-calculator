@@ -1,0 +1,20 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+.icon {
+	width: 1.25rem;
+	height: 1rem;
+    margin-right: 0.5rem;
+}
+.icon > svg {
+    fill: white;
+}
+.container h6 {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+}
