@@ -1,8 +1,14 @@
 .card {
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-    text-align: center;
-  }
-  
+	background-color: white;
+	border-radius: 6px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	padding: 2rem;
+	text-align: center;
+}
+@media (min-width: 992px) {
+	.calculator {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		grid-gap: 1.5rem;
+	}
+}

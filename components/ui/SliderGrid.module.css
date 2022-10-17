@@ -10,3 +10,9 @@
         grid-template-rows: 2rem 1rem 1rem;
     }
 }
+@media (min-width: 992px) {
+    .container {
+        margin-top: 0.625rem;
+        margin-bottom: 2.25rem;
+    }
+}

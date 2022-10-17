@@ -1,8 +1,14 @@
 .paragraph {
-    text-align: left;
-    margin-bottom: 2.5rem;
+	text-align: left;
+	margin-bottom: 2.5rem;
 }
 .value {
-    font-weight: 700;
-    white-space: nowrap;
+	font-weight: 700;
+	white-space: nowrap;
+}
+@media (min-width: 992px) {
+	.paragraph {
+		grid-column: 1 / -1;
+        margin: 0;
+	}
 }
