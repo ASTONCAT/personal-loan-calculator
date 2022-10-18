@@ -3,7 +3,7 @@ import { setAmount } from '../redux/setAmounts'
 import { doCalc } from '../redux/calcPayments'
 import Slider from './ui/Slider'
 import NumberInput from './ui/NumberInput'
-import SliderGrid from './ui/sliderGrid'
+import SliderGrid from './ui/SliderGrid'
 import Heading from './ui/Heading'
 
 export default function SetAmount() {
