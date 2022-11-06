@@ -123,7 +123,7 @@ function SetupForm(props) {
 						required
 						id="interestRate"
 						ref={interestRateInputRef}
-						step="0.001"
+						step="0.0001"
 						min="0"
 						max="1"
 					/>
