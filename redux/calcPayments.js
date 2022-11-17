@@ -89,7 +89,7 @@ function paymentsReducer(payments = initialValues, action) {
 			return {
 				...payments,
 				loader: false,
-				monthlyPayment: monthlyPaymentWithInsurance,
+				monthlyPayment: monthlyPayment,
 				totalPayment: totalPayment
 			}
 		case 'FETCH_MONTHLY_PAYMENT_FAILURE':
@@ -115,7 +115,6 @@ function paymentsReducer(payments = initialValues, action) {
 			const updateTotalPayment = updateMonthlyPaymentWithInsurance * action.payload.term + payments.arrangingFee
 			return {
 				...payments,
-				monthlyPayment: updateMonthlyPaymentWithInsurance,
 				insurance: action.payload.insurance,
 				totalPayment: updateTotalPayment
 			}

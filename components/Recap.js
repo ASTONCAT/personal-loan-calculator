@@ -28,7 +28,7 @@ export default function Recap() {
 			<NumericFormat
 				className={classes.value}
 				displayType="text"
-				value={payments.insuranceAmount}
+				value={payments.insurance ? payments.insuranceAmount : 0}
 				decimalScale={0}
 				suffix={' Kč/měsíčně'}
 			/>

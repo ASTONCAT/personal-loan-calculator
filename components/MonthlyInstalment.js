@@ -9,20 +9,21 @@ function handleClick() {
 
 export default function MonthlyInstalment() {
 	const payments = useSelector((state) => state.payments)
+	const monthlyPayment = payments.insurance
+		? payments.monthlyPayment + payments.insuranceAmount
+		: payments.monthlyPayment
 	return (
 		<div className={classes.box}>
 			<h2>Měsíčně zaplatíte</h2>
 			<NumericFormat
 				displayType="text"
-				value={payments.monthlyPayment}
+				value={monthlyPayment}
 				decimalScale={0}
 				thousandSeparator=" "
 				suffix={' Kč'}
 			/>
 			<button onClick={handleClick}>Pokračovat</button>
-			<IconFormat 
-				text="nebo Vám zavoláme"
-			/>
+			<IconFormat text="nebo Vám zavoláme" />
 		</div>
 	)
 }
