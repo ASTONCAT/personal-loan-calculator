@@ -13,7 +13,7 @@ import MonthlyInstalment from '../components/MonthlyInstalment'
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	const { db } = await connectToDatabase()
-	const calcSetup = await db.collection('setting').find({}).limit(1).toArray()
+	const calcSetup = await db.collection('initialvalues').find({}).limit(1).toArray()
 
 	store.dispatch({
 		type: 'SET_MIN_AMOUNT',

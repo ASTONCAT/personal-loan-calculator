@@ -29,7 +29,7 @@ const handler = async (req, res) => {
 											const { db } = await connectToDatabase()
 
 											// Update Setup document with the given id
-											await db.collection('setting').updateOne(
+											await db.collection('initialvalues').updateOne(
 												{ _id: ObjectId(docId) },
 												{
 													$set: {
@@ -50,7 +50,7 @@ const handler = async (req, res) => {
 											res.status(201).json({
 												error: false,
 												message:
-													'A new setup inserted! Changes will take effect after a few minutes'
+													'A new setup inserted. Changes will take effect after a few minutes'
 											})
 
 											// interestRate
