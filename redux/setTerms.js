@@ -15,20 +15,17 @@ const initialValues = {
 
 function termReducer(term = initialValues, action) {
 	switch (action.type) {
+		case 'SET_INIT_TERMS':
+			return {
+				...term,
+				min: action.payload.min,
+				max: action.payload.max,
+				requested: action.payload.requested
+			}
 		case 'SET_TERM':
 			return {
 				...term,
 				requested: action.payload
-			}
-		case 'SET_MIN_TERM':
-			return {
-				...term,
-				min: action.payload
-			}
-		case 'SET_MAX_TERM':
-			return {
-				...term,
-				max: action.payload
 			}
 		default:
 			return term

@@ -15,20 +15,17 @@ const initialValues = {
 
 function amountReducer(amount = initialValues, action) {
 	switch (action.type) {
+		case 'SET_INIT_AMOUNTS':
+			return {
+				...amount,
+				min: action.payload.min,
+				max: action.payload.max,
+				requested: action.payload.requested
+			}
 		case 'SET_AMOUNT':
 			return {
 				...amount,
 				requested: action.payload
-			}
-		case 'SET_MIN_AMOUNT':
-			return {
-				...amount,
-				min: action.payload
-			}
-		case 'SET_MAX_AMOUNT':
-			return {
-				...amount,
-				max: action.payload
 			}
 		default:
 			return amount

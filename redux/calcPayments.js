@@ -98,15 +98,15 @@ function paymentsReducer(payments = initialValues, action) {
 				loader: false,
 				error: action.payload
 			}
-		case 'SET_INTERESTS_RATE':
+		case 'SET_INIT_OTHER_VALUES':
 			return {
 				...payments,
-				interestRate: action.payload
-			}
-		case 'SET_INSURANCE':
-			return {
-				...payments,
-				insurance: action.payload
+				insurance: action.payload.insurance,
+				insuranceAmount: action.payload.insuranceAmount,
+				arrangingFee: action.payload.arrangingFee,
+				interestRate: action.payload.interestRate,
+				monthlyPayment: action.payload.monthlyPayment,
+				totalPayment: action.payload.totalPayment
 			}
 		case 'UPDATE_INSURANCE':
 			const updateMonthlyPaymentWithInsurance = action.payload.insurance
@@ -117,16 +117,6 @@ function paymentsReducer(payments = initialValues, action) {
 				...payments,
 				insurance: action.payload.insurance,
 				totalPayment: updateTotalPayment
-			}
-		case 'SET_INSURANCE_AMOUNT':
-			return {
-				...payments,
-				insuranceAmount: action.payload
-			}
-		case 'SET_ARRANGING_FEE':
-			return {
-				...payments,
-				arrangingFee: action.payload
 			}
 		default:
 			return payments
