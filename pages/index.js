@@ -1,6 +1,5 @@
 import { wrapper } from '../redux'
 import { connectToDatabase } from '../util/mongodb'
-import { doCalc } from '../redux/calcPayments'
 import Head from 'next/head'
 import Card from '../components/ui/Card'
 import Title from '../components/ui/Title'
@@ -15,7 +14,6 @@ import MonthlyInstalment from '../components/MonthlyInstalment'
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 	const { db } = await connectToDatabase()
 	const calcSetup = await db.collection('setting').find({}).limit(1).toArray()
-	const curData = { reqAmount: calcSetup[0].reqAmount, curTerms: calcSetup[0].reqTerm }
 
 	store.dispatch({
 		type: 'SET_MIN_AMOUNT',
@@ -66,8 +64,6 @@ export const getStaticProps = wrapper.getStaticProps((store) => async () => {
 		type: 'SET_ARRANGING_FEE',
 		payload: calcSetup[0].arrangingFee
 	})
-
-	store.dispatch(doCalc(curData))
 
 	return {
 		props: {
