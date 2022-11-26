@@ -8,6 +8,8 @@ export default function LoanCalcSetup({ calcSetup }) {
 
 	async function submitDataHandler(enteredData) {
 		enteredData.docId = calcSetup[0]._id // add the db document id
+		enteredData.monthlyPayment = 2240 // from Rapid API later
+		enteredData.totalPayment = 114221 // from Rapid API later
 		const response = await fetch('/api/setup', {
 			method: 'POST',
 			body: JSON.stringify(enteredData),

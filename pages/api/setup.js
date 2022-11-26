@@ -14,7 +14,9 @@ const handler = async (req, res) => {
 			interestRate,
 			insurance,
 			insuranceAmount,
-			arrangingFee
+			arrangingFee,
+			monthlyPayment,
+			totalPayment
 		} = req.body
 
 		if (minAmount > 0 && minAmount < 67108864) {
@@ -42,7 +44,9 @@ const handler = async (req, res) => {
 														insurance,
 														insuranceAmount,
 														arrangingFee,
-														interestRate
+														interestRate, 
+														monthlyPayment,
+														totalPayment
 													}
 												}
 											)
