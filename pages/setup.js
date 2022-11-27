@@ -3,13 +3,11 @@ import Head from 'next/head'
 import SetupForm from '../components/SetupForm'
 import React from 'react'
 
-export default function LoanCalcSetup({ calcSetup }) {
+export default function LoanCalcSetup({ initSetup }) {
 	const [message, setMessage] = React.useState({error: false, text: ''})
 
 	async function submitDataHandler(enteredData) {
-		enteredData.docId = calcSetup[0]._id // add the db document id
-		enteredData.monthlyPayment = 2240 // from Rapid API later
-		enteredData.totalPayment = 114221 // from Rapid API later
+		enteredData.docId = initSetup._id // add the db document id
 		const response = await fetch('/api/setup', {
 			method: 'POST',
 			body: JSON.stringify(enteredData),
@@ -32,16 +30,16 @@ export default function LoanCalcSetup({ calcSetup }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<SetupForm
-				minValue={calcSetup[0].minAmount}
-				maxValue={calcSetup[0].maxAmount}
-				reqValue={calcSetup[0].reqAmount}
-				minTerm={calcSetup[0].minTerm}
-				maxTerm={calcSetup[0].maxTerm}
-				reqTerm={calcSetup[0].reqTerm}
-				interestRate={calcSetup[0].interestRate}
-				insurance={calcSetup[0].insurance}
-				insuranceAmount={calcSetup[0].insuranceAmount}
-				arrangingFee={calcSetup[0].arrangingFee}
+				minValue={initSetup.minAmount}
+				maxValue={initSetup.maxAmount}
+				reqValue={initSetup.reqAmount}
+				minTerm={initSetup.minTerm}
+				maxTerm={initSetup.maxTerm}
+				reqTerm={initSetup.reqTerm}
+				interestRate={initSetup.interestRate}
+				insurance={initSetup.insurance}
+				insuranceAmount={initSetup.insuranceAmount}
+				arrangingFee={initSetup.arrangingFee}
 				onSubmitData={submitDataHandler}
 				message={message}
 			/>
@@ -54,9 +52,13 @@ export async function getServerSideProps() {
 
 	const calcSetup = await db.collection('initialvalues').find({}).limit(1).toArray()
 
+	const arrSetup = JSON.parse(JSON.stringify(calcSetup))
+	let initSetup = {}
+	Object.assign(initSetup, arrSetup[0])
+
 	return {
 		props: {
-			calcSetup: JSON.parse(JSON.stringify(calcSetup))
+			initSetup: initSetup
 		}
 	}
 }
