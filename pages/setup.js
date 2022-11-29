@@ -1,24 +1,62 @@
 import { connectToDatabase } from '../util/mongodb'
+import { rapidApi } from '../util/rapidapi'
+import React, {useState} from 'react'
 import Head from 'next/head'
 import SetupForm from '../components/SetupForm'
-import React from 'react'
+import axios from 'axios'
+
 
 export default function LoanCalcSetup({ initSetup }) {
-	const [message, setMessage] = React.useState({error: false, text: ''})
+	const [message, setMessage] = useState({error: false, text: ''})
 
-	async function submitDataHandler(enteredData) {
-		enteredData.docId = initSetup._id // add the db document id
-		const response = await fetch('/api/setup', {
-			method: 'POST',
-			body: JSON.stringify(enteredData),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
+    async function submitDataHandler(enteredData){
+        try {
+			// GET monthlyPayment from Rapid API
+			const resp = await axios.get(rapidApi.url, {
+				headers: {
+					'X-RapidAPI-Key': rapidApi.key,
+					'X-RapidAPI-Host': rapidApi.host
+				},
+				params: {
+					loanAmount: enteredData.reqAmount,
+					interestRate: enteredData.interestRate,
+					terms: enteredData.reqTerm
+				}
+			})
 
-		const result = await response.json()
-		setMessage({error: result.error, text: result.message})
-	}
+			// CALC totalPayment 
+			// ADD into enteredData docId, monthlyPayment and totalPayment
+			const monthlyPaymentInclInsurance = enteredData.insurance
+				? resp.data.monthlyPayment + enteredData.insuranceAmount
+				: resp.data.monthlyPayment
+			enteredData.docId = initSetup._id 
+			enteredData.monthlyPayment = resp.data.monthlyPayment
+			enteredData.totalPayment =
+				monthlyPaymentInclInsurance * enteredData.reqTerm +
+				enteredData.arrangingFee
+
+			// SAVE enteredData in database
+			const response = await fetch('/api/setup', {
+				method: 'POST',
+				body: JSON.stringify(enteredData),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+
+			// GET response and show message on frontend
+			const result = await response.json()
+			setMessage({error: result.error, text: result.message})
+
+        }
+     
+        catch(error){
+		   setMessage({error: true, text: error.message.concat('. ',error.response.data.message)})
+        }
+
+     }
+
+
 	return (
 		<>
 			<Head>
