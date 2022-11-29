@@ -16,9 +16,11 @@ export default function SetAmount() {
 	}
 
 	function handleAmountChange(event) {
-		const curData = { reqAmount: event.target.value, curTerms: false }
-		calculate(curData)
-		return dispatch(setAmount(curData.reqAmount))
+		if (event.target.value >= amount.min && event.target.value <= amount.max) {
+			const curData = { reqAmount: event.target.value, curTerms: false }
+			calculate(curData)
+			return dispatch(setAmount(curData.reqAmount))
+		}
 	}
 
 	return (

@@ -16,9 +16,11 @@ export default function SetTerm() {
 	}
 
 	function handleTermChange(event) {
-		const curData = { reqAmount: false, curTerms: event.target.value }
-		calculate(curData)
-		return dispatch(setTerm(curData.curTerms))
+		if (event.target.value >= term.min && event.target.value <= term.max) {
+			const curData = { reqAmount: false, curTerms: event.target.value }
+			calculate(curData)
+			return dispatch(setTerm(curData.curTerms))
+		}
 	}
 
 	return (
