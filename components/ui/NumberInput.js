@@ -1,17 +1,15 @@
+import { NumericFormat } from 'react-number-format'
 import classes from './NumberInput.module.css'
 
 export default function NumberInput(props) {
 	const absValue = Math.abs(props.value)
 	return (
 		<>
-			<input
-				className={`${classes.hideArrows} ${
-					props.value >= props.min && props.value <= props.max
-						? classes.rightAmount
-						: classes.wrongAmount
-				}`}
-				type="number"
-				pattern="[0-9]{3}-[0-9]{3}"
+			<NumericFormat
+				className={classes.hideArrows}
+				displayType="input"
+				decimalScale={0}
+				thousandSeparator=" "
 				value={props.value}
 				step={props.step}
 				onChange={props.handleChange}
