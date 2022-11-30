@@ -1,3 +1,4 @@
+import { NumericFormat } from 'react-number-format'
 import classes from './Slider.module.css'
 
 export default function Slider(props) {
@@ -17,20 +18,32 @@ export default function Slider(props) {
 					}% 100%`
 				}}
 			/>
-			<div className={classes.min}>{`${props.min} ${
-				props.min > 4
-					? props.units.plurals
-					: props.min > 1
-					? props.units.plural
-					: props.units.singular
-			}`}</div>
-			<div className={classes.max}>{`${props.max} ${
-				props.max > 4
-					? props.units.plurals
-					: props.max > 1
-					? props.units.plural
-					: props.units.singular
-			}`}</div>
+			<NumericFormat 
+				className={classes.min}
+				displayType="text"
+				value={props.min}
+				thousandSeparator=" "
+				suffix={`${' '} ${
+					props.min > 4
+						? props.units.plurals
+						: props.min > 1
+						? props.units.plural
+						: props.units.singular
+					}`}
+			/>
+			<NumericFormat 
+				className={classes.max}
+				displayType="text"
+				value={props.max}
+				thousandSeparator=" "
+				suffix={`${' '} ${
+					props.max > 4
+						? props.units.plurals
+						: props.max > 1
+						? props.units.plural
+						: props.units.singular
+					}`}
+			/>
 		</>
 	)
 }
