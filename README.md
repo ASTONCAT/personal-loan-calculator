@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Loan Calculator
 
-## Getting Started
+This online calculator calculates the monthly instalment based on the input parameters: loan amount, repayment period and optionally with or without insurance. Input values are entered using sliders or by typing into the input fields or using the arrow keys. Each time the input values change, the monthly instalment is recalculated.
 
-First, run the development server:
+![Calculator page](https://astoncat.com/media/calculator-page.jpg "The Calculator page")
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* [The Calculator page](https://personal-loan-calculator.vercel.app/)
+* [The Setup page](https://personal-loan-calculator.vercel.app/setup)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Built With
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The application was created to practise Next/React JS and Redux. The calculation is obtained from the RapidAPI platform. The Redux Thunk Middleware is used to enable asynchronous logic that interacts with the Redux store, e.g. asynchronous API calls. The initial values are stored in the MongoDB database and can be changed via the Setup page.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## How It Works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Next.js will pre-render the Calculator page at build time using `getStaticProps` and then every 180 seconds. Therefore, when the initial values are changed via the Setup page, the changes do not take effect immediately, but only after the next page rendering. The Setup page itself, on the other hand, is rendered with each request using `getServerSideProps`. The goal was to try both Static Site Generation and Server-Side Rendering. Also the Calculator page should serve a large number of visits, while the Setup page should be used only occasionally, so page loading speed is not that important here.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Originally it was planned to use a spinner loader for which the `false/true` state is reserved in the Redux store. However, in the end it looks cooler without the spinner as the numbers gradually flip over like on some slot machine. 
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## To-do
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The next step is to make another language version to practise Next.js routing. It would also be nice to add a currency switcher.
+

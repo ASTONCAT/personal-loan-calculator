@@ -61,10 +61,10 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Personal Loan Calculator - React, Redux, Next App</title>
+				<title>Personal Loan Calculator</title>
 				<meta
 					name="description"
-					content="Next App using Redux, React and Redux Thunk"
+					content="Next/React JS App with Redux and Redux Thunk"
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
